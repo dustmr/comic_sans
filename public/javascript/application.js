@@ -6,6 +6,7 @@ $(document).ready(function() {
     // log the drawn image's data when button is clicked
     $('#save').click(function(e) {
         var imagedata = canvas.getImage();
+        $('#data_image').val(imagedata);
         console.log(imagedata);
     });
     
