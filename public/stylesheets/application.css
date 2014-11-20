@@ -190,7 +190,7 @@ h2.start_story_tile {
   background: #FFFFFF;
   display: block;
   float: left;
-  z-index: 2;
+  z-index: 1;
 }
 
 #save { 
@@ -234,5 +234,6 @@ button#save {
   font-family: Arial;
   font-weight: lighter;
   padding-top: 3px; 
+  
 }
 
