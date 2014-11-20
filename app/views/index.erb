@@ -1,14 +1,13 @@
 <h1>Comic Sans</h1>
 <div class='container'>
   <div id='draw'></div>
-  <button id='save'>Save</button>
-</div>
 
-<form action="/project" method="post">
-  <input name="title" type="text" placeholder="Project Name">
-  <input name="data_image" id="data_image" type="text" style="display:none">
-  <input type="submit">
+  <form action="/project" id="save" method="post">
+    <input name="title" type="text" placeholder="Project Name">
+    <input name="image_data" id="image_data" type="text" style="display:none">
+    <input type="submit" value="Save" />
 
-</form>
+  </form>
 
  
+</div>
