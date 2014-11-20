@@ -10,23 +10,28 @@ helpers do
   end
 end
 
-get '/' do                ## Fancy login thinger should likely link here right Dustin? - JI
-  erb :login              
-end
+# get '/' do                ## Fancy login thinger should likely link here right Dustin? - JI
+#   erb :login              
+# end
 
-post '/' do 
-  username = params[:username]                ##When user inputs "Artist name:" then we create a new user and 
-  create_user = User.new(username: username)  ##redirect to Home page with drawing panel on left and comics on right - JI
-  session[:user_id] = existing_user.id
-  redirect '/homepage'  
-end 
+# post '/' do 
+#   username = params[:username]                ##When user inputs "Artist name:" then we create a new user and 
+#   create_user = User.new(username: username)  ##redirect to Home page with drawing panel on left and comics on right - JI
+#   session[:user_id] = existing_user.id
+#   redirect '/homepage'  
+# end 
 
-get '/homepage' do      ##Loads homepage - JI
+get '/' do      ##Loads homepage - JI
   erb :index
 end
 
 post '/inprogress' do
-  @inprogress = Project.find_by_sql "SELECT projects.title, projects.completed, tiles.project_id, tiles.image_data, tiles.created_at FROM tiles WHERE projects.completed = false ON projects.id = tiles.project_id"             ##So now should have a 
+  # @inprogress = Project.find_by_sql "SELECT projects.title, projects.completed, tiles.project_id, tiles.image_data, tiles.created_at FROM tiles WHERE projects.completed = false ON projects.id = tiles.project_id"             ##So now should have a 
+
+  ######
+  @inprogress = Project.where(:completed => false)
+
+
 end
 
 
@@ -42,7 +47,7 @@ end
 post '/project' do
   @project = Project.new(title: params[:title])
   @tile = Tile.new
-  @tile.image_data = params[:data_image]
+  @tile.image_data = params[:image_data]
 
   @project.tiles << @tile 
   @project.save

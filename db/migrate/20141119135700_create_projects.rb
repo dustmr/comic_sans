@@ -1,7 +1,8 @@
-class AddColumnProjects < ActiveRecord::Migration
+class CreateProjects < ActiveRecord::Migration
   def change
-    add_column :projects do |t|
-      t.string :completed
+    create_table :projects do |t|
+      t.string :title
+      t.timestamps
     end
   end
 end

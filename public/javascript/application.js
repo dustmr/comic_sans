@@ -4,10 +4,9 @@ $(document).ready(function() {
     var canvas = new drawingCanvas($('#draw'));
 
     // log the drawn image's data when button is clicked
-    $('#save').click(function(e) {
+    $('#save').submit(function(e) {
         var imagedata = canvas.getImage();
-        $('#data_image').val(imagedata);
-        console.log(imagedata);
+        $('#image_data').val(imagedata);
     });
     
 });
