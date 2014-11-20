@@ -1,14 +1,20 @@
-<h1>Comic Sans</h1>
+<h1 class="main_title">COMIC SANS</h1>
+
 <div class='container'>
-  <div id='draw'></div>
-  <button id='save'>Save</button>
+  <div class='leftside'>
+    <h2 class="start_story_tile">Start a Story</h2>
+    <div id='draw'></div>
+    <button id='save'>Save Progress</button>
+    
+    <form class="title_input" action="/project" method="post">
+      <input name="title" type="text" placeholder="Your Comic Strip Title">
+      <input name="data_image" id="data_image" type="text" style="display:none">
+      <input type="submit">
+    </form>
+    </div>
+
+   <div class='rightside'>
+
+   </div>
 </div>
-
-<form action="/project" method="post">
-  <input name="title" type="text" placeholder="Project Name">
-  <input name="data_image" id="data_image" type="text" style="display:none">
-  <input type="submit">
-
-</form>
-
  
