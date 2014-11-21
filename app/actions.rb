@@ -22,18 +22,30 @@ end
 # end 
 
 get '/' do      ##Loads homepage - JI
+  @inprogress = Project.where(completed: false).limit(3)
   erb :index
 end
 
-post '/inprogress' do
-  # @inprogress = Project.find_by_sql "SELECT projects.title, projects.completed, tiles.project_id, tiles.image_data, tiles.created_at FROM tiles WHERE projects.completed = false ON projects.id = tiles.project_id"             ##So now should have a 
-
-  ######
-  @inprogress = Project.where(:completed => false)
-
-
+get '/inprogress' do
+  
+  # <% @inprogress.each do |comic| %>       ##should go in Views area
+  #  <% comic.tiles.each do |image| %>
+  #  <img src="/tile/<%= puts image.id %>.png />
+  #  <% end %>
+  # <% end %>
 end
 
+get '/inprogress/:id' do              ## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
+  @comic_inprogress = Project.find params[:id]
+  puts @comic_inprogress.tiles.each do |tile|
+    '/tile/'+tile.id
+  end
+end 
+
+get '/tile/:id.png' do
+  header['Content-type'] = 'image/png'
+  Tile.find(params[:id]).image_data
+end
 
 get '/create' do
   erb :'tiles/create'
@@ -44,7 +56,7 @@ get '/project/:id' do
   erb :'/projects'
 end
 
-post '/project' do
+post '/project' do     ## creating a new comic through save button below start a story
   @project = Project.new(title: params[:title])
   @tile = Tile.new
   @tile.image_data = params[:image_data]
