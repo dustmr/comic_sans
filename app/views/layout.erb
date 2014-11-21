@@ -22,6 +22,25 @@
 
 </head>
   <body>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/"><strong>Comic Sans</strong></a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <!-- <li class="active"><a href="/">Home</a></li> -->
+        <li><a class="nav_font" href="#">All Stories</a></li>
+        <li><a class="nav_font" href="#">Continue A Story</a></li>
+        <% if current_user %> 
+          <li><a class="nav_font" href="#">Logout</a></li>
+        <% else %> 
+          <li><a class="nav_font" href="#">Login</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
 
   <%= yield %>
 
