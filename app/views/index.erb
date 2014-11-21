@@ -1,5 +1,6 @@
+<header>
 <h1 class="main_title">COMIC SANS</h1>
-
+</header>
 <div class='container'>
   <div class='leftside'>
     <h2 class="start_story_tile">Start a Story</h2>
@@ -14,14 +15,28 @@
     </div>
 
   <div class='rightside'>
-
+    <h2 class="continue_story_tile">Continue a Story</h2>     
+    <div class='project_preview'>
     <% @inprogress.each do |comic| %>  
-      <div class='project_preview'>
+        <div id='draw-thumb'>
         <% comic.tiles.each do |image| %>
           <img class="image_thumb" src='<%= image.image_data %>' />
         <% end %>
       </div>
-    <% end %>
+      <div id='draw-thumb'></div>
+      <div id='draw-thumb'></div>
+    </div>
+    <div class='project_preview'>
+      <div id='draw-thumb'></div>
+      <div id='draw-thumb'></div>
+      <div id='draw-thumb'></div>
+    </div>
+    <div class='project_preview'>
+      <div id='draw-thumb'></div>
+      <div id='draw-thumb'></div>
+      <div id='draw-thumb'></div>
+     </div>
+
   </div>
 </div>
  
