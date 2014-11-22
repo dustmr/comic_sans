@@ -20,10 +20,10 @@ end
 #   session[:user_id] = existing_user.id
 #   redirect '/homepage'
 # end
+get '/' do
 
-
-@inprogress = Project.where(completed: false).limit(3)
-erb :index
+  @inprogress = Project.where(completed: false).limit(3)
+  erb :index
 end
 
 
@@ -101,10 +101,6 @@ end
 
 #----------------Continue A Story Page -------------------------------#
 
-<<<<<<< HEAD
-
-end
-=======
 get '/projects' do
   @projects = Project.order(:created_at)
   erb :'projects'
@@ -154,7 +150,3 @@ end
 # get '/projects/new' do
 #   erb :'projects/new'
 # end
-
-
-
->>>>>>> 208a6c975c1ec7b6be6b1292803e4e465440ba50
