@@ -1,6 +1,29 @@
-<% @project.each do |tile| %>
-<p> <% tile %></p>
+<h1 class="individual_project_title"><%= @project.title %></h1>
+
+<div class="top"
+<% @tiles.each do |tile| %>
+  <!-- <%= tile.image_data %>  -->
+  <img class="project_view_thumbs" src='<%= tile.image_data %>' />
 <% end %>
+</div>
+
+<div class="bottom"> 
+  <button class="new_story" name="button">Add To Story</button>
+  <div id='draw'></div>
+  <form class="new_story" id="save" name="<%= @project.id%>" action="/projects/<%= @project.id %>" method="post">
+  <input name="image_data" id="image_data" type="text" style=" display:none">
+  <button id="button_show" class="new_story">Submit</button> 
+  </form>
+</div>
+
+
+<!-- 
+<form class="title_input" id="save" action="/project" method="post">
+      <input class="add_title" name="title" type="text" placeholder="Your Comic Strip Title">
+      <input name="image_data" id="image_data" type="text" style="display:none">
+      <input class="new_story" type="submit">
+    </form> -->
+
 
 
 
