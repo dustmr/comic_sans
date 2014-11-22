@@ -11,31 +11,31 @@ helpers do
 end
 
 # get '/' do                ## Fancy login thinger should likely link here right Dustin? - JI
-#   erb :login              
+#   erb :login
 # end
 
-# post '/' do 
-#   username = params[:username]                ##When user inputs "Artist name:" then we create a new user and 
+# post '/' do
+#   username = params[:username]                ##When user inputs "Artist name:" then we create a new user and
 #   create_user = User.new(username: username)  ##redirect to Home page with drawing panel on left and comics on right - JI
 #   session[:user_id] = existing_user.id
-#   redirect '/homepage'  
-# end 
+#   redirect '/homepage'
+# end
 
-get '/' do      
-##Loads homepage - JI
+get '/' do
+  ##Loads homepage - JI
   @inprogress = Project.where(completed: false).limit(3)
   erb :index
 end
 
 
 
-get '/inprogress/:id' do              
-## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
+get '/inprogress/:id' do
+  ## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
   @comic_inprogress = Project.find params[:id]
   puts @comic_inprogress.tiles.each do |tile|
     '/tile/'+tile.id
   end
-end 
+end
 
 get '/tile/:id.png' do
   header['Content-type'] = 'image/png'
@@ -51,13 +51,13 @@ get '/project/:id' do
   erb :'/projects'
 end
 
-post '/project' do     
-## creating a new comic through save button below start a story
+post '/project' do
+  # creating a new comic through save button below start a story
   @project = Project.new(title: params[:title])
   @tile = Tile.new
   @tile.image_data = params[:image_data]
 
-  @project.tiles << @tile 
+  @project.tiles << @tile
   @project.save
   redirect '/'
 end
@@ -108,6 +108,5 @@ post '/signup' do
     redirect '/signup'
   end
 
-  
-end
 
+end
