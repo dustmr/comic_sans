@@ -21,40 +21,18 @@ end
 #   redirect '/homepage'  
 # end 
 
+#------------------HOMEPAGE -------------------------------#
+
 get '/' do      
-##Loads homepage - JI
+##Loads homepage right side bar with 3 comics (currently just 1 tile each)
+##Half - done
   @inprogress = Project.where(completed: false).limit(3)
   erb :index
 end
 
-
-
-get '/inprogress/:id' do              
-## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
-  @comic_inprogress = Project.find params[:id]
-  puts @comic_inprogress.tiles.each do |tile|
-    '/tile/'+tile.id
-  end
-end 
-
-get '/tile/:id.png' do
-  header['Content-type'] = 'image/png'
-  Tile.find(params[:id]).image_data
-end
-
-get '/create' do
-  erb :'tiles/create'
-end
-
-get '/projects/:project_id' do
-  @tiles = Tile.where(project_id: params[:project_id])
-  # binding.pry
-  erb :'/project'
-end
-
-
 post '/project' do     
 ## creating a new comic through save button below start a story
+##DONE
   @project = Project.new(title: params[:title])
   @tile = Tile.new
   @tile.image_data = params[:image_data]
@@ -65,21 +43,7 @@ post '/project' do
 end
 
 
-post '/project/:id/new' do
-  @tile = Tile.new(title: params[:title])
-  @tile.save
-end
-
-get '/projects' do
-  @projects = Project.order(:created_at)
-  erb :'projects'
-end
-
-get '/projects/new' do
-  erb :'projects/new'
-end
-
-
+#-----------------LOGIN PAGE --------------------------------#
 get '/login' do
   erb :'login'
 end
@@ -109,8 +73,58 @@ post '/signup' do
     redirect '/'
   else
     redirect '/signup'
-  end
-
-  
+  end  
 end
+
+#----------------Continue A Story Page -------------------------------#
+
+get '/projects' do
+  @projects = Project.order(:created_at)
+  erb :'projects'
+end
+
+
+
+#---------------Add to Story X Page ---------------------------------#
+
+get '/projects/:project_id' do
+  @tiles = Tile.where(project_id: params[:project_id])
+  @project = Project.find(params[:project_id])
+  erb :'/project'
+end
+
+post '/projects/:project_id' do
+  @tile = Tile.new(project_id: params[:project_id])
+  @tile.image_data = params[:image_data]
+  @project.save
+  redirect '/projects/:project_id'
+end  
+
+
+#---------------
+
+# get '/inprogress/:id' do              
+# ## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
+#   @comic_inprogress = Project.find params[:id]
+#   puts @comic_inprogress.tiles.each do |tile|
+#     '/tile/'+tile.id
+#   end
+# end 
+
+
+# get '/tile/:id.png' do
+#   header['Content-type'] = 'image/png'
+#   Tile.find(params[:id]).image_data
+# end
+
+# post '/project/:id/new' do
+#   @tile = Tile.new(title: params[:title])
+#   @tile.save
+# end
+
+# get '/projects/new' do
+#   erb :'projects/new'
+# end
+
+
 
