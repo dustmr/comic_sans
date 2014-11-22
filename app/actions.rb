@@ -46,10 +46,11 @@ get '/create' do
   erb :'tiles/create'
 end
 
-get '/project/:id' do
-  @project = Project.find(:id)
-  erb :'/projects'
+get '/projects/:id' do
+  @project = Tile.find_by(params[:project_id])
+  erb :'/project'
 end
+
 
 post '/project' do     
 ## creating a new comic through save button below start a story

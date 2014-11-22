@@ -20,7 +20,7 @@
     <div class="grid-container-landing">
     <% @inprogress.each do |project| %>
     <div class="row">
-    <h3 class="project_title"><a class="title" href="/projects/<%= project.id %>"><%= project.title %></a></h3> 
+    <h3 class="project_title"><a class="mini-titles" href="/projects/<%= project.id %>"><%= project.title %></a></h3> 
       <% project.tiles.each do |image| %>
       <img class="landing_continue_story_thumbs" src='<%= image.image_data %>' />
       <% end %>
