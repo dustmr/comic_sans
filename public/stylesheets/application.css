@@ -25,10 +25,11 @@ body::before {
   width: 100%;
   height: 100%;
 }
-/*.form {
+.form {
   position: relative;
   background: #fff;
   width: 285px;
+  border-radius: 8px;
   margin: 40px auto 0;
   padding: 40px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
@@ -38,7 +39,7 @@ body::before {
   position: absolute;
   top: 0;
   right: 0;
-  background: #33b5e5;
+  background: #D9B611;
   width: 30px;
   height: 30px;
   color: #fff;
@@ -77,7 +78,7 @@ body::before {
 .form h2 {
   margin: 0 0 20px;
   line-height: 1;
-  color: #33b5e5;
+  color: #D9B611;
   font-size: 18px;
   font-weight: 400;
 }
@@ -129,15 +130,16 @@ body::before {
 }
 .form button {
   cursor: pointer;
-  background: #33b5e5;
+  background: #D9B611;
   width: 100%;
   padding: 10px 15px;
   margin-bottom: 25px;
+  border-radius: 5px;
   border: 0;
   color: #fff;
-  font-family: "Roboto";
-  font-size: 14px;
-  font-weight: 400;
+  font-family: 'Roboto Condensed';
+  font-size: 16px;
+  font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-transition: 0.2s linear;
@@ -165,7 +167,7 @@ body::before {
 .form footer .fa {
   color: #e74c3c;
 }
-*/
+
 /* ----------------------- Landing Page --------------------------- */
 
 header {
@@ -283,19 +285,62 @@ div.project_preview {
 
   
 }
-/* ----------------------- Preview Thumbs --------------------------- */
 
+img.landing_continue_story_thumbs {
+  width: 120px;
+  height: 80px;
+  border: 3px solid #000000;
+  background: white;
+}
+
+/* ----------------------- Projects Page --------------------------- */
+
+.grid-container {
+  width: 100%;
+  margin-left: 10%;
+
+}
+
+div.row {
+  margin-left: 10px;
+}
+
+img.project_view_thumbs {
+  width: 300px;
+  height:200px;
+  border: 4px solid #000000;
+  background: white;
+}
+
+a.title {
+  font-size: 1em;
+  font-family: 'Roboto Condensed';
+  /*text-align: center;*/
+  color: #D9B611;
+  font-weight: bold;
+
+}
 
 
 /* ----------------------- Navbar --------------------------- */
 
-.navbar-default .navbar-nav>li>a {
-  color: #19B5FE;
+/*.navbar-default .navbar-nav>li>a {
+  color: #D9B611;
 }
-
+*/
 div.container-fluid {
   padding-top: 0;
   padding-bottom: 0;
+}
+.navitem {
+  position: fixed;
+/*  margin-top: 1%;*/
+  padding-top: 13px;
+  /*padding-right: 5px;*/
+  /*margin-right: 5px;*/
+  margin-left: 84%;
+  font-weight: bold;
+  color: #D9B611;
 }
 
 

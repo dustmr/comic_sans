@@ -32,12 +32,16 @@
     <div>
       <ul class="nav navbar-nav">
         <!-- <li class="active"><a href="/">Home</a></li> -->
-        <li><a class="nav_font" href="#">All Stories</a></li>
-        <li><a class="nav_font" href="#">Continue A Story</a></li>
+        <li><a class="nav_font" href="/projects">All Stories</a></li>
+        <li><a class="nav_font" href="/projects">Continue A Story</a></li>
         <% if current_user %> 
           <li><a class="nav_font" href="#">Logout</a></li>
         <% else %> 
-          <li><a class="nav_font" href="#">Login</a></li>
+          <li><a class="nav_font" href="/login">Login</a></li>
+        <% end %>
+          <div class="navitem">
+            <% if current_user %> <%= current_user.username %>
+          </div>   
         <% end %>
       </ul>
     </div>
