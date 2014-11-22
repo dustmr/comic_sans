@@ -11,6 +11,7 @@ body {
   /*color: black;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: url("http://4.bp.blogspot.com/-RIoQzkp9yYA/Tvp48FGjpvI/AAAAAAAABuE/2CAdLsmRdYc/s400/pencil.gif"), pointer;
 }
 
 body::before {
@@ -24,10 +25,11 @@ body::before {
   width: 100%;
   height: 100%;
 }
-/*.form {
+.form {
   position: relative;
   background: #fff;
   width: 285px;
+  border-radius: 8px;
   margin: 40px auto 0;
   padding: 40px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
@@ -37,7 +39,7 @@ body::before {
   position: absolute;
   top: 0;
   right: 0;
-  background: #33b5e5;
+  background: #D9B611;
   width: 30px;
   height: 30px;
   color: #fff;
@@ -76,7 +78,7 @@ body::before {
 .form h2 {
   margin: 0 0 20px;
   line-height: 1;
-  color: #33b5e5;
+  color: #D9B611;
   font-size: 18px;
   font-weight: 400;
 }
@@ -128,15 +130,16 @@ body::before {
 }
 .form button {
   cursor: pointer;
-  background: #33b5e5;
+  background: #D9B611;
   width: 100%;
   padding: 10px 15px;
   margin-bottom: 25px;
+  border-radius: 5px;
   border: 0;
   color: #fff;
-  font-family: "Roboto";
-  font-size: 14px;
-  font-weight: 400;
+  font-family: 'Roboto Condensed';
+  font-size: 16px;
+  font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-transition: 0.2s linear;
@@ -164,11 +167,21 @@ body::before {
 .form footer .fa {
   color: #e74c3c;
 }
-*/
+
 /* ----------------------- Landing Page --------------------------- */
 
+header {
+  width: 1100px;
+  height: 110px;
+}
+
+div.container {
+  width: 1000px;
+  height: auto;
+}
 h1.main_title {
   font-size: 3em;
+  font-family: 'Roboto Condensed';
   text-align: center;
   color: white;
   font-weight: bold;
@@ -177,6 +190,15 @@ h1.main_title {
 
 h2.start_story_tile {
   font-size: 2em;
+  font-family: 'Roboto Condensed';
+  /*text-align: center;*/
+  color: white;
+  font-weight: bold;
+}
+
+h2.continue_story_tile {
+  font-size: 2em;
+  font-family: 'Roboto Condensed';
   /*text-align: center;*/
   color: white;
   font-weight: bold;
@@ -217,23 +239,109 @@ div.leftside {
 }
 
 div.rightside {
-  position: absolute;
-  width: 400px;
+  position: relative;
+  width: 450px;
   height: auto;
   padding: 0;
   margin: 0;
   left: 5%;
-  top: 25%;
+  top: 20%;
+  float: right;
+  /*margin-top: 40px;*/
 }
 
-button#save {
+form#save.title_input {
+  border: solid 3px #000000;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+input.new_story {
   border-radius: 5px;
   border: none;
   background-color: #D9B611;
   color: #FFFFFF;
   font-family: Arial;
-  font-weight: lighter;
+  /*font-weight: lighter;*/
   padding-top: 3px; 
   
 }
+
+input.add_title {
+  width: 485px;
+  padding: 1.5px;
+  padding-left: 10px;
+  border-radius: 3px;
+  border: 1px solid #19B5FE;
+
+}
+
+div.project_preview {
+  width: 100%;
+  height: 115px;
+  background: white;
+  margin-top: 22.5px;
+  border: 5px solid #000000;
+
+  
+}
+
+img.landing_continue_story_thumbs {
+  width: 120px;
+  height: 80px;
+  border: 3px solid #000000;
+  background: white;
+}
+
+/* ----------------------- Projects Page --------------------------- */
+
+.grid-container {
+  width: 100%;
+  margin-left: 10%;
+
+}
+
+div.row {
+  margin-left: 10px;
+}
+
+img.project_view_thumbs {
+  width: 300px;
+  height:200px;
+  border: 4px solid #000000;
+  background: white;
+}
+
+a.title {
+  font-size: 1em;
+  font-family: 'Roboto Condensed';
+  /*text-align: center;*/
+  color: #D9B611;
+  font-weight: bold;
+
+}
+
+
+/* ----------------------- Navbar --------------------------- */
+
+/*.navbar-default .navbar-nav>li>a {
+  color: #D9B611;
+}
+*/
+div.container-fluid {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.navitem {
+  position: fixed;
+/*  margin-top: 1%;*/
+  padding-top: 13px;
+  /*padding-right: 5px;*/
+  /*margin-right: 5px;*/
+  margin-left: 84%;
+  font-weight: bold;
+  color: #D9B611;
+}
+
+
 

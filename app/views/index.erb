@@ -1,3 +1,4 @@
+
 <h1 class="main_title">COMIC SANS</h1>
 
 <div class='container'>
@@ -7,14 +8,24 @@
     <!-- <button id='save'>Save Progress</button> -->
     
     <form class="title_input" id="save" action="/project" method="post">
-      <input name="title" type="text" placeholder="Your Comic Strip Title">
+      <input class="add_title" name="title" type="text" placeholder="Your Comic Strip Title">
       <input name="image_data" id="image_data" type="text" style="display:none">
-      <input type="submit">
+      <input class="new_story" type="submit">
     </form>
+
+  </div>
+
+<div class='rightside'>
+  <h2 class="continue_story_tile">Continue a Story</h2> 
+    <div class="grid-container-landing">
+    <% @inprogress.each do |project| %>
+    <div class="row">
+    <h3 class="project_title"><a class="title" href="/projects/<%= project.id %>"><%= project.title %></a></h3> 
+      <% project.tiles.each do |image| %>
+      <img class="landing_continue_story_thumbs" src='<%= image.image_data %>' />
+      <% end %>
     </div>
-
-   <div class='rightside'>
-
-   </div>
+  <% end %>
+</div>
 </div>
  
