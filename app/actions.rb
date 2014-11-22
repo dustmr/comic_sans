@@ -28,7 +28,6 @@ get '/' do
 end
 
 
-
 get '/inprogress/:id' do
   ## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
   @comic_inprogress = Project.find params[:id]
