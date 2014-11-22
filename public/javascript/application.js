@@ -25,3 +25,9 @@ $(document).ready(function() {
   });
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
 });
+
+$(document).ready(function() {
+    $('.bottom .new_story').click(function() {
+        $(".bottom #draw").addClass("show");
+    });
+});

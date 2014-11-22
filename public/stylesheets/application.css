@@ -370,4 +370,15 @@ div.container-fluid {
   display: none;
 }
 
+.show {
+  display: block;
+}
+
+h1.individual_project_title {
+  font-size: 2em;
+  font-family: 'Roboto Condensed';
+  text-align: center;
+  color: #D9B611;
+  font-weight: bold;
+}
 

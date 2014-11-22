@@ -48,6 +48,7 @@ end
 
 get '/projects/:project_id' do
   @tiles = Tile.where(project_id: params[:project_id])
+  @project = Project.find(params[:project_id])
   # binding.pry
   erb :'/project'
 end
