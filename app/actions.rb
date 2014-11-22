@@ -94,14 +94,16 @@ get '/projects/:project_id' do
 end
 
 post '/projects/:project_id' do
+  @project = Project.find(params[:project_id])
   @tile = Tile.new(project_id: params[:project_id])
   @tile.image_data = params[:image_data]
+  @project.tiles << @tile
   @project.save
-  redirect '/projects/:project_id'
+  redirect '/'
 end  
 
 
-#---------------
+#---------------USELESS SHIT --------------------#
 
 # get '/inprogress/:id' do              
 # ## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
