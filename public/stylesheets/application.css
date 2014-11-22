@@ -354,5 +354,20 @@ div.container-fluid {
   color: #D9B611;
 }
 
+/* ----------------------- Add To Project --------------------------- */
+
+.new_story {
+  border-radius: 5px;
+  border: none;
+  background-color: #D9B611;
+  color: #FFFFFF;
+  font-family: Arial;
+  /*font-weight: lighter;*/
+  padding-top: 3px; 
+}
+
+.bottom #draw {
+  display: none;
+}
 
 

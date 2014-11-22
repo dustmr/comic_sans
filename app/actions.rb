@@ -46,8 +46,9 @@ get '/create' do
   erb :'tiles/create'
 end
 
-get '/projects/:id' do
-  @project = Tile.find_by(params[:project_id])
+get '/projects/:project_id' do
+  @tiles = Tile.where(project_id: params[:project_id])
+  # binding.pry
   erb :'/project'
 end
 
@@ -63,7 +64,8 @@ post '/project' do
   redirect '/'
 end
 
-post '/project/:id/tile' do
+
+post '/project/:id/new' do
   @tile = Tile.new(title: params[:title])
   @tile.save
 end
