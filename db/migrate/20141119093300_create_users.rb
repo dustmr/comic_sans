@@ -8,3 +8,10 @@ class CreateUsers < ActiveRecord::Migration
     end
   end
 end
+
+all tiles with the same project id
+
+find {
+  tiles.project_id = project_id
+}
+

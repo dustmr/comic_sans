@@ -5,6 +5,7 @@ $(document).ready(function() {
     // alert("test");
     // log the drawn image's data when button is clicked
     $('#save').submit(function(e) {
+        console.log('clicked on save. saving image.');
         var imagedata = canvas.getImage();
         $('#image_data').val(imagedata);
     });
@@ -24,4 +25,11 @@ $(document).ready(function() {
      $('.register').animate({height: "toggle", opacity: "toggle"}, "slow");
   });
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+});
+
+$(document).ready(function() {
+    $('.bottom .new_story').click(function() {
+        $(".bottom #draw").addClass("show");
+        $(".bottom #button_show").addClass("show");
+    });
 });
