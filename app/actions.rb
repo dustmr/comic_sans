@@ -36,7 +36,7 @@ post '/project' do
   @project = Project.new(title: params[:title])
   @tile = Tile.new
   @tile.image_data = params[:image_data]
-
+  @project.length = params[:length]
   @project.tiles << @tile
   @project.save
   redirect '/'
@@ -95,10 +95,12 @@ end
 
 post '/projects/:project_id' do
   @project = Project.find(params[:project_id])
-  @tile = Tile.new(project_id: params[:project_id])
-  @tile.image_data = params[:image_data]
-  @project.tiles << @tile
-  @project.save
+  if @project.tiles.count < 9
+    @tile = Tile.new(project_id: params[:project_id])
+    @tile.image_data = params[:image_data]
+    @project.tiles << @tile
+    @project.save
+  end
   redirect '/'
 end
 
