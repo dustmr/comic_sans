@@ -10,7 +10,7 @@
 
 
 <div class="bottom"> 
-  <% if @tiles.count < 9 %>
+  <% unless @project.completed? %>
     <button class="new_story" name="button">Add To Story</button>
   <% end %>
   <div id='draw'></div>

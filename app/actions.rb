@@ -26,18 +26,22 @@ end
 get '/' do
   ##Loads homepage right side bar with 3 comics (currently just 1 tile each)
   ##Half - done
-  @inprogress = Project.where(completed: false).limit(3)
+  @inprogress = Project.where(completed: false).limit(3).order(created_at: :desc)
   erb :index
 end
 
 post '/project' do
   ## creating a new comic through save button below start a story
   ##DONE
-  @project = Project.new(title: params[:title])
-  @tile = Tile.new
+  @project = Project.create(title: params[:title], length: params[:length])
+  @tile = @project.tiles.build
   @tile.image_data = params[:image_data]
-  @project.length = params[:length]
-  @project.tiles << @tile
+  # @project.length = params[:length]
+  # @project.tiles << @tile
+  @tile.valid?
+  @project.valid?
+  p @project.errors
+  p @tile.errors
   @project.save
   redirect '/'
 end
@@ -79,7 +83,7 @@ end
 #----------------Continue A Story Page -------------------------------#
 
 get '/projects' do
-  @projects = Project.order(:created_at)
+  @projects = Project.where(completed: false).order(created_at: :desc)
   erb :'projects'
 end
 
@@ -103,6 +107,9 @@ post '/projects/:project_id' do
   end
   redirect '/'
 end
+
+
+
 
 
 # This is a stupid comment
