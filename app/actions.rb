@@ -21,6 +21,26 @@ end
 #   redirect '/homepage'
 # end
 
+get '/' do
+  ##Loads homepage - JI
+  @inprogress = Project.where(completed: false).limit(3)
+  erb :index
+end
+
+
+get '/inprogress/:id' do
+  ## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
+  @comic_inprogress = Project.find params[:id]
+  puts @comic_inprogress.tiles.each do |tile|
+    '/tile/'+tile.id
+  end
+end
+
+get '/tile/:id.png' do
+  header['Content-type'] = 'image/png'
+  Tile.find(params[:id]).image_data
+end
+
 #------------------HOMEPAGE -------------------------------#
 
 get '/' do
@@ -87,9 +107,7 @@ get '/projects' do
   erb :'projects'
 end
 
-
-
-#---------------Add to Story X Page ---------------------------------#
+#-------------Add to Story X Page ---------------------------------#
 
 get '/projects/:project_id' do
   @tiles = Tile.where(project_id: params[:project_id])
@@ -107,9 +125,6 @@ post '/projects/:project_id' do
   end
   redirect '/'
 end
-
-
-
 
 
 # This is a stupid comment

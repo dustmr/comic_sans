@@ -32,4 +32,10 @@ $(document).ready(function() {
         $(".bottom #draw").addClass("show");
         $(".bottom #button_show").addClass("show");
     });
+
+
 });
+
+
+
+
