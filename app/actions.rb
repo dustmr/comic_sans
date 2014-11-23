@@ -103,6 +103,7 @@ post '/projects/:project_id' do
 end
 
 
+# This is a stupid comment
 #---------------USELESS SHIT --------------------#
 
 # get '/inprogress/:id' do
