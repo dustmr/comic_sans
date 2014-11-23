@@ -8,8 +8,9 @@
     </div>
 
   <div class="bottom"> 
+   <% unless @project.completed? %>
     <button class="new_story" name="button" data-toggle="modal" data-target="#myModal">Add To Story</button>
-
+  <% end %> 
   </div>
 </div>
 

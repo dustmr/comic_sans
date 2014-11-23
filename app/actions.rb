@@ -11,33 +11,57 @@ helpers do
 end
 
 # get '/' do                ## Fancy login thinger should likely link here right Dustin? - JI
-#   erb :login              
+#   erb :login
 # end
 
-# post '/' do 
-#   username = params[:username]                ##When user inputs "Artist name:" then we create a new user and 
+# post '/' do
+#   username = params[:username]                ##When user inputs "Artist name:" then we create a new user and
 #   create_user = User.new(username: username)  ##redirect to Home page with drawing panel on left and comics on right - JI
 #   session[:user_id] = existing_user.id
-#   redirect '/homepage'  
-# end 
+#   redirect '/homepage'
+# end
 
-#------------------HOMEPAGE -------------------------------#
-
-get '/' do      
-##Loads homepage right side bar with 3 comics (currently just 1 tile each)
-##Half - done
+get '/' do
+  ##Loads homepage - JI
   @inprogress = Project.where(completed: false).limit(3)
   erb :index
 end
 
-post '/project' do     
-## creating a new comic through save button below start a story
-##DONE
-  @project = Project.new(title: params[:title])
-  @tile = Tile.new
-  @tile.image_data = params[:image_data]
 
-  @project.tiles << @tile 
+get '/inprogress/:id' do
+  ## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
+  @comic_inprogress = Project.find params[:id]
+  puts @comic_inprogress.tiles.each do |tile|
+    '/tile/'+tile.id
+  end
+end
+
+get '/tile/:id.png' do
+  header['Content-type'] = 'image/png'
+  Tile.find(params[:id]).image_data
+end
+
+#------------------HOMEPAGE -------------------------------#
+
+get '/' do
+  ##Loads homepage right side bar with 3 comics (currently just 1 tile each)
+  ##Half - done
+  @inprogress = Project.where(completed: false).limit(3).order(created_at: :desc)
+  erb :index
+end
+
+post '/project' do
+  ## creating a new comic through save button below start a story
+  ##DONE
+  @project = Project.create(title: params[:title], length: params[:length])
+  @tile = @project.tiles.build
+  @tile.image_data = params[:image_data]
+  # @project.length = params[:length]
+  # @project.tiles << @tile
+  @tile.valid?
+  @project.valid?
+  p @project.errors
+  p @tile.errors
   @project.save
   redirect '/'
 end
@@ -73,19 +97,17 @@ post '/signup' do
     redirect '/'
   else
     redirect '/signup'
-  end  
+  end
 end
 
 #----------------Continue A Story Page -------------------------------#
 
 get '/projects' do
-  @projects = Project.order(:created_at)
+  @projects = Project.where(completed: false).order(created_at: :desc)
   erb :'projects'
 end
 
-
-
-#---------------Add to Story X Page ---------------------------------#
+#-------------Add to Story X Page ---------------------------------#
 
 get '/projects/:project_id' do
   @tiles = Tile.where(project_id: params[:project_id])
@@ -95,23 +117,26 @@ end
 
 post '/projects/:project_id' do
   @project = Project.find(params[:project_id])
-  @tile = Tile.new(project_id: params[:project_id])
-  @tile.image_data = params[:image_data]
-  @project.tiles << @tile
-  @project.save
+  if @project.tiles.count < 9
+    @tile = Tile.new(project_id: params[:project_id])
+    @tile.image_data = params[:image_data]
+    @project.tiles << @tile
+    @project.save
+  end
   redirect '/'
-end  
+end
 
 
+# This is a stupid comment
 #---------------USELESS SHIT --------------------#
 
-# get '/inprogress/:id' do              
+# get '/inprogress/:id' do
 # ## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
 #   @comic_inprogress = Project.find params[:id]
 #   puts @comic_inprogress.tiles.each do |tile|
 #     '/tile/'+tile.id
 #   end
-# end 
+# end
 
 
 # get '/tile/:id.png' do
@@ -123,10 +148,6 @@ end
 #   @tile = Tile.new(title: params[:title])
 #   @tile.save
 # end
-
 # get '/projects/new' do
 #   erb :'projects/new'
 # end
-
-
-
