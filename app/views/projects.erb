@@ -1,15 +1,15 @@
 
 <h1 class="main_title">Continue A Story</h1>
 
-<div class="grid-container">
+<div class="projects-container">
 <div class="row">
-<% @projects.each do |project| %>
-  <div class="col-md-3">
+<% @projects.each do |project| %>>
       <h3 class="project_title"><a class="title" href="/projects/<%= project.id %>"><%= project.title %></a></h3> 
       <% project.tiles.each do |image| %>
         <img class="project_view_thumbs" src='<%= image.image_data %>' />
       <% end %>
-    </div>
   <% end %>
   </div>
 </div>
+</div>
+
