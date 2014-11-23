@@ -8,3 +8,7 @@ class CreateUsers < ActiveRecord::Migration
 		end
 	end
 end
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes

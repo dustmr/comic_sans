@@ -50,11 +50,14 @@ get '/' do
   erb :index
 end
 
+
 post '/project' do
   ## creating a new comic through save button below start a story
   ##DONE
   @project = Project.create(title: params[:title], length: params[:length])
   @tile = @project.tiles.build
+  # @tile = Tile.new(user: current_user)
+
   @tile.image_data = params[:image_data]
   # @project.length = params[:length]
   # @project.tiles << @tile
@@ -112,13 +115,16 @@ end
 get '/projects/:project_id' do
   @tiles = Tile.where(project_id: params[:project_id])
   @project = Project.find(params[:project_id])
+  @posted_users = @project.tiles
+
   erb :'/project'
 end
 
 post '/projects/:project_id' do
   @project = Project.find(params[:project_id])
+
   if @project.tiles.count < 9
-    @tile = Tile.new(project_id: params[:project_id])
+    @tile = Tile.new(project_id: params[:project_id], user_id: session[:id])
     @tile.image_data = params[:image_data]
     @project.tiles << @tile
     @project.save
@@ -127,7 +133,17 @@ post '/projects/:project_id' do
 end
 
 
-# This is a stupid comment
+
+#---------------COMPLETED STORIES ---------------------#
+
+get '/projects/completed' do      
+##Loads completed stories page with completed comics (currently just 1 tile each)
+##Half - done
+  @completed = Project.where(completed: true)
+  erb :________
+end
+
+
 #---------------USELESS SHIT --------------------#
 
 # get '/inprogress/:id' do
