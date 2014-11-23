@@ -7,14 +7,21 @@
 <% end %>
 </div>
 
+
+
 <div class="bottom"> 
-  <button class="new_story" name="button">Add To Story</button>
+  <% unless @project.completed? %>
+    <button class="new_story" name="button">Add To Story</button>
+  <% end %>
   <div id='draw'></div>
   <form class="new_story" id="save" name="<%= @project.id%>" action="/projects/<%= @project.id %>" method="post">
   <input name="image_data" id="image_data" type="text" style=" display:none">
   <button id="button_show" class="new_story">Submit</button> 
   </form>
 </div>
+
+
+
 
 
 <!-- 
