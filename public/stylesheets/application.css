@@ -329,6 +329,7 @@ div.wrapper-row {
 
 .projects-container {
   margin-left: 5%;
+  overflow-x: auto;
 }
 
 div.row {
