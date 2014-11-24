@@ -124,7 +124,7 @@ post '/projects/:project_id' do
     @project.tiles << @tile
     @project.save
   end
-  redirect '/'
+  redirect '/projects'
 end
 
 

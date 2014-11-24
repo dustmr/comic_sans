@@ -9,8 +9,8 @@
     
 
     <form class="title_input" id="save" action="/project" method="post">
-      <input name="length" type="text" placeholder="Please pick how long you want your comic to be! (1-9)">
       <input class="add_title" name="title" type="text" placeholder="Your Comic Strip Title">
+      <input class="comic_length" name="length" type="text" placeholder="Project Length">
       <input name="image_data" id="image_data" type="text" style="display:none">
       <input class="new_story" type="submit">
     </form>
@@ -21,10 +21,12 @@
       <div class="grid-container-landing">
       <% @inprogress.each do |project| %>
         <div class="row">
-      <h3 class="project_title"><a class="mini-titles" href="/projects/<%= project.id %>"><%= project.title %></a></h3> 
+      <h3 class="project_title"><a class="mini-titles" href="/projects/<%= project.id %>"><%= project.title %></a></h3>
+         <div id="owl-example" class="owl-carousel"> 
         <% project.tiles.each do |image| %>
-        <img class="landing_continue_story_thumbs" src='<%= image.image_data %>' />
+        <div><img class="landing_continue_story_thumbs" src='<%= image.image_data %>' /></div>
         <% end %>
+      </div>
       </div>
     <% end %>
   </div>

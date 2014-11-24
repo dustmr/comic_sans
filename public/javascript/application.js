@@ -32,9 +32,15 @@ $(document).ready(function() {
         $(".bottom #draw").addClass("show");
         $(".bottom #button_show").addClass("show");
     });
-
-
 });
+$(document).ready(function() {
+ 
+  $(".owl-carousel").owlCarousel({items : 5}
+    );
+ 
+});
+
+
 
 
 
