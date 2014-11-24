@@ -3,13 +3,17 @@
 
 <div class="projects-container">
 <div class="row">
-<% @projects.each do |project| %>>
+<% @projects.each do |project| %>
       <h3 class="project_title"><a class="title" href="/projects/<%= project.id %>"><%= project.title %></a></h3> 
-      <div class="carousel-inner" role="listbox">
+      <div id="owl-example" class="owl-carousel">
+
       <% project.tiles.each do |image| %>
-        <img class="project_view_thumbs" src='<%= image.image_data %>' />
+        <div><img class="project_view_thumbs" src='<%= image.image_data %>' /></div>
       <% end %>
-      </div>
+
+
+
+    </div>
   <% end %>
   </div>
 </div>
