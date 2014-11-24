@@ -123,6 +123,8 @@ post '/projects/:project_id' do
     @tile.image_data = params[:image_data]
     @project.tiles << @tile
     @project.save          ##still need some kind of error alert to pop-up to let people know they can't add two tiles in a row.
+  else
+    return "You can't add two tiles in a row, wait your turn. Ya filthy animal."
   end
   redirect '/projects'
 end
