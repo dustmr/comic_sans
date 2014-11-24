@@ -56,7 +56,8 @@ post '/project' do
   ##DONE
   @project = Project.create(title: params[:title], length: params[:length])
   @tile = @project.tiles.build
-  # @tile = Tile.new(user: current_user)
+  @tile.user = current_user
+
 
   @tile.image_data = params[:image_data]
   # @project.length = params[:length]
@@ -122,12 +123,14 @@ end
 
 post '/projects/:project_id' do
   @project = Project.find(params[:project_id])
-
-  if @project.tiles.count < 9
-    @tile = Tile.new(project_id: params[:project_id], user_id: session[:id])
+  # binding.pry
+  if @project.tiles.count < 9 && @project.tiles.last.user_id != current_user.id
+    @tile = Tile.new(project_id: params[:project_id], user_id: session[:user_id])
     @tile.image_data = params[:image_data]
     @project.tiles << @tile
-    @project.save
+    @project.save          ##still need some kind of error alert to pop-up to let people know they can't add two tiles in a row.
+  else
+    return "You can't add two tiles in a row, wait your turn. Ya filthy animal."
   end
   redirect '/'
 end

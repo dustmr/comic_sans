@@ -3,7 +3,7 @@
 
 <div class="projects-container">
 <div class="row">
-<% @projects.each do |project| %>>
+<% @projects.each do |project| %>
       <h3 class="project_title"><a class="title" href="/projects/<%= project.id %>"><%= project.title %></a></h3> 
       <div class="carousel-inner" role="listbox">
       <% project.tiles.each do |image| %>
