@@ -10,6 +10,10 @@ helpers do
   end
 end
 
+set(:auth) { |x|
+  condition { redirect '/login', 303 if current_user.nil? }
+}
+
 # get '/' do                ## Fancy login thinger should likely link here right Dustin? - JI
 #   erb :login
 # end
@@ -20,13 +24,6 @@ end
 #   session[:user_id] = existing_user.id
 #   redirect '/homepage'
 # end
-
-get '/' do
-  ##Loads homepage - JI
-  @inprogress = Project.where(completed: false).limit(3)
-  erb :index
-end
-
 
 get '/inprogress/:id' do
   ## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
@@ -56,7 +53,7 @@ post '/project' do
   ##DONE
   @project = Project.create(title: params[:title], length: params[:length])
   @tile = @project.tiles.build
-  # @tile = Tile.new(user: current_user)
+  @tile.user =current_user
 
   @tile.image_data = params[:image_data]
   # @project.length = params[:length]
@@ -105,7 +102,7 @@ end
 
 #----------------Continue A Story Page -------------------------------#
 
-get '/projects' do
+get '/projects', auth: :user do
   @projects = Project.where(completed: false).order(created_at: :desc)
   erb :'projects'
 end
@@ -133,16 +130,21 @@ post '/projects/:project_id' do
 end
 
 
-
 #---------------COMPLETED STORIES ---------------------#
 
-get '/projects/completed' do      
-##Loads completed stories page with completed comics (currently just 1 tile each)
-##Half - done
+get '/projects/completed', auth: :user do
+
   @completed = Project.where(completed: true)
   erb :________
 end
 
+
+#---------------RATE A STORY --------------------#
+
+get '/ratings', auth: :user do
+  @projects = Project.where(completed: true)
+  erb :ratings
+end
 
 #---------------USELESS SHIT --------------------#
 

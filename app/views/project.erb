@@ -12,6 +12,11 @@
    <% unless @project.completed? %>
     <button class="new_story" name="button" data-toggle="modal" data-target="#myModal">Add To Story</button>
   <% end %> 
+  <% unless current_user.rated_projects.include?(@project) %>
+  <form action='/projects/<%= @project.id %>/rate' method="post">
+  <input type="submit">Rate This Story!</input>
+</form>
+  <% end %>
   </div>
 </div>
 
