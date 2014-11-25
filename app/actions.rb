@@ -149,7 +149,6 @@ get '/ratings', auth: :user do
 end
 
 
-
 #---------------USELESS SHIT --------------------#
 
 # get '/inprogress/:id' do

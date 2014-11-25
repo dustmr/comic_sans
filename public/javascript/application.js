@@ -34,15 +34,17 @@ $(document).ready(function() {
           // if (@project.tiles.last.user_id == current_user.id) {alert("You can't add two tiles in a row, wait your turn. Ya filthy animal.")}
     });
 });
+
+var currentImage = 0
+  , totalImages
+  , images = [];
+
 $(document).ready(function() {
  
-  $(".owl-carousel").owlCarousel({items : 5}
-    );
- 
+  if($(".owl-carousel").length) {
+    $(".owl-carousel").owlCarousel({items : 5});
+  }
+
+  
 });
-
-
-
-
-
 

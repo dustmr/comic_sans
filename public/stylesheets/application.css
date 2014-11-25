@@ -151,7 +151,7 @@ body::before {
   transition: 0.2s linear;
 }
 .form button:hover {
-  background: #1a9bcb;
+  background: #DB1916;
 }
 .form footer {
   background: #f3f3f3;
@@ -335,14 +335,14 @@ div.wrapper-row {
 }
 
 img.no_tiles {
-  width: 150px;
-  height: 120px;
+  width: 175px;
+  height: 130px;
   margin-left: 35%;
 }
 
 img.story_tile {
-  width: 222px;
-  height: 162px;
+  width: 240px;
+  height: 180px;
   margin-left: 5%;
 }
 
@@ -388,6 +388,11 @@ img.project_page_view_thumbs {
   background: white;
   margin-right: 7px;
   margin-bottom: 10px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
 }
 
 a.title {
@@ -400,6 +405,10 @@ a.title {
 
 }
 
+.tile-counter {
+  margin-left: 2%;
+
+}
 
 /* ----------------------- Navbar --------------------------- */
 
@@ -493,3 +502,14 @@ img.project_page_view_thumbs:hover {
   -ms-transition: all 1s ease;
   transition: all 1s ease;
 }
+
+.animation_thumbs {
+  position: absolute;
+  /*display: block;*/
+  border: 10px solid #34495E; 
+  border-radius: 6px;
+  margin-left: 18%;
+  width: 800px;
+  height: 600px;
+  background-color: #FFFFFF;
+  /*opacity: 0;*/
