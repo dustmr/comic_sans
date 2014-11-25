@@ -5,9 +5,9 @@
 <div class="row">
 <% @projects.each do |project| %>
       <h3 class="project_title"><a class="title" href="/projects/<%= project.id %>"><%= project.title %></a></h3> 
-      <div id="owl-example" class="owl-carousel">
+      <!-- <div id="owl-example" class="owl-carousel"> -->
       <% project.tiles.each do |image| %>
-        <div><img class="project_view_thumbs" src='<%= image.image_data %>' /></div>
+        <div><img class="project_view_thumbs" src='<%= image.image_data %>' /><!--</div>-->
       <% end %>
     </div>
   <% end %>

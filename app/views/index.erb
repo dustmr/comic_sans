@@ -32,7 +32,7 @@
       <h3 class="project_title"><a class="mini-titles" href="/projects/<%= project.id %>"><%= project.title %></a></h3>
          <div id="owl-example" class="owl-carousel"> 
         <% project.tiles.each do |image| %>
-        <div><img class="landing_continue_story_thumbs" src='<%= image.image_data %>' /></div>
+        <img class="landing_continue_story_thumbs" src='<%= image.image_data %>' />
         <% end %>
       </div>
       </div>
