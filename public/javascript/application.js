@@ -31,7 +31,7 @@ $(document).ready(function() {
     $('.bottom .new_story').click(function() {
         $(".bottom #draw").addClass("show");
         $(".bottom #button_show").addClass("show");
-          if (@project.tiles.last.user_id == current_user.id) {alert("You can't add two tiles in a row, wait your turn. Ya filthy animal.")}
+          // if (@project.tiles.last.user_id == current_user.id) {alert("You can't add two tiles in a row, wait your turn. Ya filthy animal.")}
     });
 });
 $(document).ready(function() {
