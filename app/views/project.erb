@@ -4,7 +4,7 @@
     <div class="top"
     <% @tiles.each do |tile| %>
       <!-- <%= tile.image_data %>  -->
-      <img class="project_view_thumbs" src='<%= tile.image_data %>' />
+      <img class="project_page_view_thumbs" src='<%= tile.image_data %>' />
     <% end %>
     </div>
 
@@ -12,11 +12,6 @@
    <% unless @project.completed? %>
     <button class="new_story" name="button" data-toggle="modal" data-target="#myModal">Add To Story</button>
   <% end %> 
-  <% unless current_user.rated_projects.include?(@project) %>
-  <form action='/projects/<%= @project.id %>/rate' method="post">
-  <input type="submit">Rate This Story!</input>
-</form>
-  <% end %>
   </div>
 </div>
 

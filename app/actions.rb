@@ -146,6 +146,8 @@ get '/ratings', auth: :user do
   erb :ratings
 end
 
+
+
 #---------------USELESS SHIT --------------------#
 
 # get '/inprogress/:id' do

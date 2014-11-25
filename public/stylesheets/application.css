@@ -196,13 +196,14 @@ h2.start_story_tile {
   /*text-align: center;*/
   color: white;
   font-weight: bold;
+  margin-top: 58px;
 }
 
 h2.continue_story_tile {
   font-size: 2em;
   font-family: 'Roboto Condensed';
   /*text-align: center;*/
-  margin-top: 37px;
+  margin-top: 45px;
   color: white;
   font-weight: bold;
 }
@@ -219,7 +220,7 @@ h2.continue_story_tile {
 }
 
 #save { 
-  margin: 10px; 
+  margin-top: 10px; 
   font-size: 20px; 
   line-height: 25px; 
   float: left;
@@ -233,7 +234,7 @@ form.title_input {
 
 div.leftside {
   position: absolute;
-  width: 600px;
+  width: 700px;
   height: auto;
   padding: 0;
   margin: 0;
@@ -246,14 +247,15 @@ div.rightside {
   width: 600px;
   height: auto;
   padding: 0;
-  left: 15%;
+  left: 53%;
   top: 21%;
-  float: right;
+
+  /*float: right;*/
   /*margin-top: 40px;*/
 }
 
 form#save.title_input {
-  width: 113%;
+  width: 100%;
   border: solid 3px #000000;
   border-radius: 5px;
   padding: 3px;
@@ -296,8 +298,8 @@ div.project_preview {
 }
 
 img.landing_continue_story_thumbs {
-  width: 120px;
-  height: 80px;
+  width: 102px;
+  height: 76px;
   /*margin-bottom: 4px;*/
   border: 4px solid #34495E;
   border-radius: 5px;
@@ -332,6 +334,29 @@ div.wrapper-row {
 
 }
 
+img.no_tiles {
+  width: 150px;
+  height: 120px;
+  margin-left: 35%;
+}
+
+img.story_tile {
+  width: 222px;
+  height: 162px;
+  margin-left: 5%;
+}
+
+.logo {
+  width: 275px;
+  height: 100px;
+  margin-left: 41%;
+}
+
+.arrow-wrap {
+  position: relative;
+  z-index: -1;
+}
+
 /* ----------------------- Projects Page --------------------------- */
 
 
@@ -346,6 +371,16 @@ div.row {
 }
 
 img.project_view_thumbs {
+  width: 250px;
+  height:166.65px;
+  border: 7px solid #34495E;
+  border-radius: 7px;
+  background: white;
+  margin-right: 7px;
+  margin-bottom: 10px;
+}
+
+img.project_page_view_thumbs {
   width: 250px;
   height:166.65px;
   border: 7px solid #34495E;
@@ -444,7 +479,17 @@ canvas.drawing-canvas {
   padding: 15%;
 }
 
+/* ----------------------- Rating Page --------------------------- */
+
+
+
 /* ----------------------- Carousel --------------------------- */
-/*:hover {
-  background: #1a9bcb;
-}*/
+img.project_page_view_thumbs:hover {
+  width: 400px;
+  height: 300px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
