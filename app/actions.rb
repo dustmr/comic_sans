@@ -109,11 +109,9 @@ end
 
 #-------------Add to Story X Page ---------------------------------#
 
-get '/projects/:project_id' do
-  @tiles = Tile.where(project_id: params[:project_id])
+get '/projects/:project_id', auth: :user do
   @project = Project.find(params[:project_id])
-  @posted_users = @project.tiles
-
+  @tiles = @project.tiles
   erb :'/project'
 end
 
@@ -139,14 +137,27 @@ get '/projects/completed', auth: :user do
 end
 
 
-#---------------RATE A STORY --------------------#
+#---------------RATINGS PAGE--------------------#
 
 get '/ratings', auth: :user do
   @projects = Project.where(completed: true)
   erb :ratings
 end
 
+#---------------RATE A STORY --------------------#
+
+post '/projects/:project_id/rate', auth: :user do
+  @project = Project.find(params[:project_id])
+  @project.ratings.create(user: current_user, number_rating: params[:number_rating])
+  redirect "/projects/#{params[:project_id]}"
+end
+
+
+
+
+
 #---------------USELESS SHIT --------------------#
+
 
 # get '/inprogress/:id' do
 # ## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
