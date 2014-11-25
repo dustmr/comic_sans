@@ -138,11 +138,10 @@ get '/projects/completed', auth: :user do
   erb :________
 end
 
-
 #---------------RATINGS PAGE--------------------#
 
 get '/ratings', auth: :user do
-  @projects = Project.where(completed: true)
+  @projects = Project.where(completed: true).sort_by { |project| project.average_rating }.reverse
   erb :ratings
 end
 
