@@ -4,7 +4,7 @@
     <div class="top"
     <% @tiles.each do |tile| %>
       <!-- <%= tile.image_data %>  -->
-      <img class="project_view_thumbs" src='<%= tile.image_data %>' />
+      <img class="project_page_view_thumbs" src='<%= tile.image_data %>' />
     <% end %>
     </div>
 
@@ -30,9 +30,8 @@
 </select>
 
   <input type="submit" value="rate"/>
-</form>
-<% else %> 
-  "Don't work on master." - Don
+</form> 
+  
   <% end %>
   </div>
 </div>
