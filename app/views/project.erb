@@ -1,9 +1,10 @@
 <h1 class="individual_project_title"><%= @project.title %></h1>
+
   <div class="individual-project-container">
     <div class="top"
     <% @tiles.each do |tile| %>
       <!-- <%= tile.image_data %>  -->
-      <img class="project_view_thumbs" src='<%= tile.image_data %>' />
+      <img class="project_page_view_thumbs" src='<%= tile.image_data %>' />
     <% end %>
     </div>
 
@@ -29,4 +30,18 @@
       </div>
     </div>
  </div>
+
+
+
+
+<!-- 
+<form class="title_input" id="save" action="/project" method="post">
+      <input class="add_title" name="title" type="text" placeholder="Your Comic Strip Title">
+      <input name="image_data" id="image_data" type="text" style="display:none">
+      <input class="new_story" type="submit">
+    </form> -->
+
+
+
+
 
