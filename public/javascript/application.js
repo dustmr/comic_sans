@@ -43,6 +43,16 @@ $(document).ready(function() {
 
 
 
+var currentImage = 0
+  , totalImages
+  , images = [];
 
+$(document).ready(function() {
+ 
+  if($(".owl-carousel").length) {
+    $(".owl-carousel").owlCarousel({items : 5});
+  }
 
+  
+});
 

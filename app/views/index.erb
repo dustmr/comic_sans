@@ -29,7 +29,7 @@
       <div class="grid-container-landing">
       <% @inprogress.each do |project| %>
         <div class="row">
-      <h3 class="project_title"><a class="mini-titles" href="/projects/<%= project.id %>"><%= project.title %></a></h3>
+      <h3 class="project_title"><a class="mini-titles" href="/projects/<%= project.id %>"><%= project.title %> (<%= project.tiles.count%>/<%= project.length%>)</a></h3>
          <div id="owl-example" class="owl-carousel"> 
         <% project.tiles.each do |image| %>
         <div><img class="landing_continue_story_thumbs" src='<%= image.image_data %>' /></div>
