@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20141122185700) do
+ActiveRecord::Schema.define(version: 20141123170900) do
 
   create_table "projects", force: true do |t|
     t.string   "title"
@@ -23,6 +22,8 @@ ActiveRecord::Schema.define(version: 20141122185700) do
 
   create_table "ratings", force: true do |t|
     t.integer "number_rating"
+    t.integer "user_id"
+    t.integer "project_id"
   end
 
   create_table "tiles", force: true do |t|
