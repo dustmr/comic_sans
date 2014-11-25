@@ -8,7 +8,8 @@
     <% end %>
     </div>
 
-  <div class="bottom"> 
+  <!-- <div class="bottom">  -->
+
     <% if @project.completed? %> This comic's rating is <%= @project.ratings.average(:number_rating) || 0 %> out of 10! <% end %>
    <% unless @project.completed? %>
     <button class="new_story" name="button" data-toggle="modal" data-target="#myModal">Add To Story</button>
@@ -30,6 +31,8 @@
 
   <input type="submit" value="rate"/>
 </form>
+<% else %> 
+  "Don't work on master." - Don
   <% end %>
   </div>
 </div>
