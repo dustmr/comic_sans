@@ -53,7 +53,7 @@ post '/project' do
   ##DONE
   @project = Project.create(title: params[:title], length: params[:length])
   @tile = @project.tiles.build
-  @tile.user =current_user
+  @tile.user = current_user
 
   @tile.image_data = params[:image_data]
   # @project.length = params[:length]
@@ -117,9 +117,9 @@ end
 
 post '/projects/:project_id' do
   @project = Project.find(params[:project_id])
-
-  if @project.tiles.count < 9
-    @tile = Tile.new(project_id: params[:project_id], user_id: session[:id])
+  # binding.pry
+  if @project.tiles.count < 9 && @project.tiles.last.user_id != current_user.id
+    @tile = Tile.new(project_id: params[:project_id], user_id: session[:user_id])
     @tile.image_data = params[:image_data]
     @project.tiles << @tile
     @project.save          ##still need some kind of error alert to pop-up to let people know they can't add two tiles in a row.
@@ -138,11 +138,10 @@ get '/projects/completed', auth: :user do
   erb :________
 end
 
-
 #---------------RATINGS PAGE--------------------#
 
 get '/ratings', auth: :user do
-  @projects = Project.where(completed: true)
+  @projects = Project.where(completed: true).sort_by { |project| project.average_rating }.reverse
   erb :ratings
 end
 
