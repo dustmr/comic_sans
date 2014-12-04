@@ -10,6 +10,10 @@ helpers do
   end
 end
 
+set(:auth) { |x|
+  condition { redirect '/login', 303 if current_user.nil? }
+}
+
 # get '/' do                ## Fancy login thinger should likely link here right Dustin? - JI
 #   erb :login
 # end
@@ -21,6 +25,19 @@ end
 #   redirect '/homepage'
 # end
 
+get '/inprogress/:id' do
+  ## + button template (will need a corresponding field in respective erb files that gives button value = <%= project.id %>)
+  @comic_inprogress = Project.find params[:id]
+  puts @comic_inprogress.tiles.each do |tile|
+    '/tile/'+tile.id
+  end
+end
+
+get '/tile/:id.png' do
+  header['Content-type'] = 'image/png'
+  Tile.find(params[:id]).image_data
+end
+
 #------------------HOMEPAGE -------------------------------#
 
 get '/' do
@@ -30,11 +47,14 @@ get '/' do
   erb :index
 end
 
+
 post '/project' do
   ## creating a new comic through save button below start a story
   ##DONE
   @project = Project.create(title: params[:title], length: params[:length])
   @tile = @project.tiles.build
+  @tile.user =current_user
+
   @tile.image_data = params[:image_data]
   # @project.length = params[:length]
   # @project.tiles << @tile
@@ -82,37 +102,53 @@ end
 
 #----------------Continue A Story Page -------------------------------#
 
-get '/projects' do
+get '/projects', auth: :user do
   @projects = Project.where(completed: false).order(created_at: :desc)
   erb :'projects'
 end
 
-
-
-#---------------Add to Story X Page ---------------------------------#
+#-------------Add to Story X Page ---------------------------------#
 
 get '/projects/:project_id' do
   @tiles = Tile.where(project_id: params[:project_id])
   @project = Project.find(params[:project_id])
+  @posted_users = @project.tiles
+
   erb :'/project'
 end
 
 post '/projects/:project_id' do
   @project = Project.find(params[:project_id])
-  if @project.tiles.count < 9
-    @tile = Tile.new(project_id: params[:project_id])
+  # binding.pry
+  if @project.tiles.count < 9 && @project.tiles.last.user_id != current_user.id
+    @tile = Tile.new(project_id: params[:project_id], user_id: session[:user_id])
     @tile.image_data = params[:image_data]
     @project.tiles << @tile
-    @project.save
+    @project.save          ##still need some kind of error alert to pop-up to let people know they can't add two tiles in a row.
+  else
+    return "You can't add two tiles in a row, wait your turn. Ya filthy animal."
   end
-  redirect '/'
+  redirect '/projects'
 end
 
 
+#---------------COMPLETED STORIES ---------------------#
+
+get '/projects/completed', auth: :user do
+
+  @completed = Project.where(completed: true)
+  erb :________
+end
 
 
+#---------------RATE A STORY --------------------#
 
-# This is a stupid comment
+get '/ratings', auth: :user do
+  @projects = Project.where(completed: true)
+  erb :ratings
+end
+
+
 #---------------USELESS SHIT --------------------#
 
 # get '/inprogress/:id' do

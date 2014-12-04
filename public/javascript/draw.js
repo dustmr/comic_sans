@@ -1,28 +1,20 @@
-function getPixelRatio(context) {
-    var devicePixelRatio = window.devicePixelRatio || 1;
-    var backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1;
-    var ratio = devicePixelRatio / backingStoreRatio;
-    return ratio;
-}
-
 function setCanvasSize(canvas_jq, width, height) {
     canvas_jq.css('width', width);
     canvas_jq.css('height', height);
     canvas_jq.attr('width', width);
     canvas_jq.attr('height', height);
-  //  console.debug("setCanvasSize: ", width, height);
     var canvas = canvas_jq.get(0);
     var context = canvas.getContext("2d");
     // make the h/w accessible from context obj as well
     context.width = width;
     context.height = height;
 
-    var ratio = getPixelRatio(context);
-
- //   console.debug("ratio: ", ratio);
+    var devicePixelRatio = window.devicePixelRatio || 1;
+    var backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1;
+    var ratio = devicePixelRatio / backingStoreRatio;
 
     // upscale the canvas if the two ratios don't match
-    //if(devicePixelRatio !== backingStoreRatio) {
+    if(devicePixelRatio !== backingStoreRatio) {
         var oldWidth = canvas.width;
         var oldHeight = canvas.height;
 
@@ -34,7 +26,7 @@ function setCanvasSize(canvas_jq, width, height) {
 
         context.scale(ratio, ratio);
         context.scale_ratio = ratio;
-    //}
+    }
 
 }
     
@@ -154,40 +146,8 @@ function drawingCanvas(jq_elem) {
         prev_position = { x: null, y: null };
     }
     this.getCursorPosition = function(e) {
-
-        console.debug('view coordinates: mouse coords: ', e.clientX, e.clientY);
-
-        
-
-        var ratio = getPixelRatio(canvas_jq[0].getContext('2d'));
-        var rect = canvas_jq[0].getBoundingClientRect();
-
-        console.debug("canvas rect: ", rect);
-
-        var mousePosX = (e.clientX - rect.left);// / ratio;
-        var mousePosY = (e.clientY - rect.top);// / ratio;
-        
-        console.debug("page coordinates: canvas coords: ", mousePosX, mousePosY);
-
-        var xPosBeforeScale = mousePosX;
-        var yPosBeforeScale = mousePosY;
-
-//      console.debug("x/y position before scale: ", xPosBeforeScale, yPosBeforeScale);
-
-  
-
-        var xScale = canvas_jq.width() / canvas_jq[0].width;//(rect.right-rect.left);
-        var yScale = canvas_jq.height() / canvas_jq[0].height;//(rect.bottom-rect.top);
-
-        console.debug("Canvas scale: ", xScale, yScale);
-
-        //this is wrong
-        var x = (xPosBeforeScale / (xScale/ratio));
-        var y = (yPosBeforeScale / (yScale/ratio));
-        console.debug("canvas coordinates after scale: ", x, y);
-
-//        console.debug("x/y final: ", x, y);
-
+        var x = e.pageX - canvas_jq.offset().left
+        var y = e.pageY - canvas_jq.offset().top
         if(x < 0) x = 0;
         if(y < 0) y = 0;
         return {x: x, y: y};
@@ -200,5 +160,3 @@ function drawingCanvas(jq_elem) {
     this.init();
     return this;
 }
-
-
