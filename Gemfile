@@ -11,6 +11,8 @@ gem 'sinatra-activerecord'
 
 gem 'puma'
 gem 'tux'
+gem 'seed_dump'
+
 
 group :production do
   gem 'pg'
